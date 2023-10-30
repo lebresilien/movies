@@ -20,9 +20,9 @@ const NavBar = () => (
         </Link>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <Link href="/">
+        <Link href="/favourites">
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-            Favorites
+            Favourites
           </NavigationMenuLink>
         </Link>
       </NavigationMenuItem>

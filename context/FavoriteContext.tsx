@@ -1,10 +1,9 @@
 "use client";
-
 import React, { Dispatch, createContext, useReducer } from "react";
-import { Movie } from "../../types";
+import { Movie } from "../types";
 
 type StateType = {
-  fovorites: []
+  favorites: Movie[]
 };
 
 type ActionType = {
@@ -13,7 +12,7 @@ type ActionType = {
 };
 
 const initialState: StateType = {
-    fovorites: [],
+    favorites: [],
 };
 
 const reducer = (state: StateType, action: ActionType) => {
@@ -21,10 +20,13 @@ const reducer = (state: StateType, action: ActionType) => {
       case "ADD":
         return { 
           ...state, 
-          favorites: [...state.fovorites, action.payload]
+          favorites: [...state.favorites, action.payload]
         };
       case "REMOVE":
-        return { ...state, favorites: [] };
+        return { 
+          ...state, 
+          favorites: state.favorites.filter((m) => m.id !== action.payload.id) 
+        };
       default:
         return state;
     }
