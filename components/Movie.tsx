@@ -19,17 +19,24 @@ type Props = {
 
 const Movie = ({ id, title, releaseDate, img, isFavourite }: Props) => {
 
-    const { dispatch } = useContext(FavoriteContext)
+    const { state, dispatch } = useContext(FavoriteContext)
 
     const add = (id: number, title: string, releaseDate: string, img: string) => {
-        const movie = {
-            id: id,
-            title: title,
-            releaseDate: releaseDate,
-            img: img,
-            isFavourite: true
+        
+        const item = state.favorites.find(f => f.id === id)
+        
+        if(item) {
+           alert('already added: ' + item.title)
+        } else {
+            const movie = {
+                id: id,
+                title: title,
+                releaseDate: releaseDate,
+                img: img,
+                isFavourite: true
+            }
+            dispatch({ type: "ADD", payload: movie })
         }
-        dispatch({ type: "ADD", payload: movie })
     }
 
     const remove = (id: number, title: string, releaseDate: string, img: string) => {
@@ -44,7 +51,7 @@ const Movie = ({ id, title, releaseDate, img, isFavourite }: Props) => {
     }
 
     return (
-        <Card>
+        <Card className="transition-all duration-700 hover:scale-75">
             <CardHeader className="p-0 mb-2">
                 <Image
                     src={img}
