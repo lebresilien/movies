@@ -1,5 +1,5 @@
 
-export type Movie = {
+export type Movi = {
     id: number,
     title: string,
     releaseDate: string,
