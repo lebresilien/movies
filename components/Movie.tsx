@@ -14,11 +14,10 @@ type Props = {
     title: string,
     img: string,
     releaseDate: string,
-    isFavourite: boolean,
-    like(id: number): void
+    isFavourite: boolean
 }
 
-const Movie = ({ id, title, releaseDate, img, isFavourite, like }: Props) => {
+const Movie = ({ id, title, releaseDate, img, isFavourite }: Props) => {
 
     const { state, dispatch } = useContext(FavoriteContext)
 
@@ -29,7 +28,6 @@ const Movie = ({ id, title, releaseDate, img, isFavourite, like }: Props) => {
         if(item) {
            alert('already added: ' + item.title)
         } else {
-            like(id)
             const movie = {
                 id: id,
                 title: title,

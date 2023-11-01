@@ -88,7 +88,6 @@ export default function Home() {
                 releaseDate={movie.release_date} 
                 img={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 isFavourite={false}
-                like={() => like(movie.id)}
               />
             ))} 
         </div>
