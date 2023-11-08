@@ -1,9 +1,9 @@
 "use client"
-import Movie from '@/components/Movie'
 import Search from '@/components/Search'
-import { Movi } from '@/types';
+import { Movie } from '@/types';
 import { ChangeEvent, useEffect, useState } from 'react'
 import { Skeleton } from "@/components/ui/skeleton"
+import MovieItem from '@/components/MovieItem';
 const URL = "https://api.themoviedb.org/3/"
 
 /* async function getData() {
@@ -21,7 +21,7 @@ const sk = [1, 2, 3, 4]
 
 export default function Home() {
   
-  const [movies, setMovies] = useState<Movi[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setLoading] = useState(true)
   const [text, setText] = useState('')
 
@@ -81,7 +81,7 @@ export default function Home() {
 
         <div className="flex items-center overflow-auto overscroll-contain p-4 gap-x-4 my-5">
           {movies.map((movie: any, index: number) => (
-              <Movie 
+              <MovieItem 
                 key={index} 
                 id={movie.id} 
                 title={movie.title} 

@@ -1,14 +1,14 @@
 "use client";
 import React, { Dispatch, createContext, useReducer } from "react";
-import { Movi } from "../types";
+import { Movie } from "../types";
 
 type StateType = {
-  favorites: Movi[]
+  favorites: Movie[]
 };
 
 type ActionType = {
   type: string;
-  payload: Movi
+  payload: Movie
 };
 
 const initialState: StateType = {

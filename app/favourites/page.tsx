@@ -1,5 +1,5 @@
 "use client";
-import Movie from "@/components/Movie";
+import Movie from "@/components/MovieItem";
 import { FavoriteContext } from "@/context/FavoriteContext";
 import { useContext } from "react";
 

@@ -8,6 +8,7 @@ import {
 import Image from "next/image"
 import { FavoriteContext } from "@/context/FavoriteContext";
 import { useContext } from "react";
+import placeholderPic from "@/public/assets/placeholder.png"
 
 type Props = {
     id: number
@@ -17,7 +18,7 @@ type Props = {
     isFavourite: boolean
 }
 
-const Movie = ({ id, title, releaseDate, img, isFavourite }: Props) => {
+const MovieItem = ({ id, title, releaseDate, img, isFavourite }: Props) => {
 
     const { state, dispatch } = useContext(FavoriteContext)
 
@@ -53,13 +54,28 @@ const Movie = ({ id, title, releaseDate, img, isFavourite }: Props) => {
     return (
         <Card className="transition-all duration-700 hover:scale-75">
             <CardHeader className="p-0 mb-2">
+                <div className="h-full">
+                <Image
+                    src={placeholderPic}
+                    width={200}
+                    height={100}
+                    alt={`img${id}`}
+                    className="rounded-t"
+                /> 
                 <Image
                     src={img}
                     width={200}
                     height={100}
                     alt="Picture of movies"
                     className="rounded-t"
+                    loading="lazy"
+                    onLoad={() => {
+                        // Hide the placeholder image once the main image is loaded
+                        const placeholderImageElement = document.querySelector('[alt=img'+ id + ']');
+                        placeholderImageElement && (placeholderImageElement.style.display = 'none');
+                    }}
                 /> 
+                </div>
             </CardHeader>
             <CardContent className="w-[200px]">
                 <h5 className="text-md font-bold text-gray-900 block truncate">
@@ -85,4 +101,4 @@ const Movie = ({ id, title, releaseDate, img, isFavourite }: Props) => {
     )
 }
 
-export default Movie;
+export default MovieItem;
